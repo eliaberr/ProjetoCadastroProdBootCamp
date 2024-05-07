@@ -1,4 +1,4 @@
-$("#price").mask("999.9999,99");
+$("#inputPrice").mask("9.999,99");
 
 var products = [
     {
