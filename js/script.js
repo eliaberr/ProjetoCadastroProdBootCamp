@@ -1,4 +1,4 @@
-$("#inputPrice").mask("9.999,99");
+$("#inputPrice").mask("000.000.000.000.000,00", {reverse: true});
 
 var products = [
     {
@@ -80,7 +80,7 @@ function addNewRow(prod) {
     var options = '';
 
     if (prod.promotion) {
-        options = "<span class='badge text-bg-success'>P</span>"
+        options = "<span class='badge text-bg-success me-1'>P</span>"
     }
 
     if (prod.new) {
