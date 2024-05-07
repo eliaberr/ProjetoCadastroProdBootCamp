@@ -45,6 +45,25 @@ function loadProducts() {
     }
 }
 
+function save(){
+   
+    var prod = {
+        id: products.length+1,
+        name:  document.getElementById("inputName").value,
+        description: document.getElementById("inputDescription").value,
+        price: document.getElementById("inputPrice").value,
+        category: document.getElementById("selectCategory").value,
+        promotion: document.getElementById("checkBoxPromotion").checked,
+        new: document.getElementById("checkBoxNewProduct").checked,
+    };
+
+    addNewRow(prod);
+    products.push(prod)
+    
+
+
+}
+
 function addNewRow(prod) {
     var table = document.getElementById("productsTable");
 
