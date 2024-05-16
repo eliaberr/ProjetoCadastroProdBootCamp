@@ -1,4 +1,8 @@
-$("#inputPrice").mask("000.000.000.000.000,00", {reverse: true});
+$("#inputPrice").mask("000.000.000.000.000,00", { reverse: true });
+
+function convertToNumber(priceFormat){
+    return priceFormat.replace(/\./g, '').replace(',', '.');
+}
 
 var products = [
     {
@@ -45,24 +49,29 @@ function loadProducts() {
     }
 }
 
-function save(){
-   
+function save() {
+
     var prod = {
-        id: products.length+1,
-        name:  document.getElementById("inputName").value,
+        id: products.length + 1,
+        name: document.getElementById("inputName").value,
         description: document.getElementById("inputDescription").value,
-        price: document.getElementById("inputPrice").value,
+        price: convertToNumber(document.getElementById("inputPrice").value),
         category: document.getElementById("selectCategory").value,
         promotion: document.getElementById("checkBoxPromotion").checked,
         new: document.getElementById("checkBoxNewProduct").checked,
     };
 
+
+
     addNewRow(prod);
     products.push(prod)
-    
+
+
 
 
 }
+
+
 
 function addNewRow(prod) {
     var table = document.getElementById("productsTable");
@@ -78,19 +87,19 @@ function addNewRow(prod) {
     var descriptionNode = document.createTextNode(prod.description);
     newRow.insertCell().appendChild(descriptionNode);
 
-    var dinheoroFormatado = new Intl.NumberFormat('pt-BR',
-        {
-            style: 'currency',
-            currency: 'BRL'
-        }
-    ).format(prod.price)
+    
 
-    prod.price = dinheoroFormatado
+    //Insert product price
+    var formatter = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+    });
 
-    var priceNode = document.createTextNode(prod.price);
+    var priceNode = document.createTextNode(formatter.format(prod.price));
     newRow.insertCell().appendChild(priceNode);
 
-
+    console.log(formatter.format(priceNode));
+    
 
 
     var categoryNode = document.createTextNode(categories[prod.category - 1].name);
