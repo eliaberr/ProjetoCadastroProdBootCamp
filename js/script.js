@@ -66,8 +66,7 @@ function save() {
     addNewRow(prod);
     products.push(prod)
 
-
-
+    document.getElementById("formProduct").reset();
 
 }
 
